@@ -3,14 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navya - My Special Person</title>
+    <title>Navya, You Are Special ❤️</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Navya, You Are My Everything ❤️</h1>
-        <p>From the moment we met, you have been the most beautiful part of my life...</p>
-        <img src="romantic-image.jpg" alt="Romantic Couple">
+        <h1>Navya, You Are Special ❤️</h1>
+        <p class="message">
+            No matter the situation, you have always loved me—even when I didn’t reciprocate in the same way.  
+            <br><br>
+            Last Valentine’s, you prepared a surprise for me, but I wasn’t there…  
+            <br><br>
+            I know that must have hurt, and I regret not being present in that moment.  
+            <br><br>
+            This time, I won’t miss it. This time, I want to make you feel as special as you truly are.  
+            <br><br>
+            I may not always express it perfectly, but <strong>you mean everything to me</strong>.  
+            <br><br>
+            ❤️ Forever Yours. ❤️
+        </p>
+
+        <!-- Slideshow Container -->
+        <div class="slideshow-container">
+            <div class="slide fade">
+                <img src="images/image1.jpg" alt="Memory 1">
+            </div>
+            <div class="slide fade">
+                <img src="images/image2.jpg" alt="Memory 2">
+            </div>
+            <div class="slide fade">
+                <img src="images/image3.jpg" alt="Memory 3">
+            </div>
+            <div class="slide fade">
+                <img src="images/image4.jpg" alt="Memory 4">
+            </div>
+            <div class="slide fade">
+                <img src="images/image5.jpg" alt="Memory 5">
+            </div>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="dots-container">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
     </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
