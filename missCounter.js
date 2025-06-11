@@ -1,29 +1,37 @@
-// Get today's date in YYYY-MM-DD format
+// Today's date in YYYY-MM-DD
 const today = new Date().toISOString().split('T')[0];
 
-// Use a unique namespace to avoid collision with others on countapi.xyz
+// Unique namespace to avoid conflicts (use your project name or something unique)
 const namespace = 'navya-special-nikhil-project';
 const dailyKey = `missCount_${today}`;
 const totalKey = 'totalMissCount';
 
-// Fetch daily counter (increments automatically)
+// Function to update count display
+function updateCounterDisplay(id, value) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.textContent = value;
+  }
+}
+
+// Update daily counter
 fetch(`https://api.countapi.xyz/hit/${namespace}/${dailyKey}`)
   .then(res => res.json())
   .then(data => {
-    document.getElementById('miss-count').textContent = data.value;
+    updateCounterDisplay('miss-count', data.value);
   })
   .catch(err => {
     console.error('Daily counter error:', err);
-    document.getElementById('miss-count').textContent = 'Error';
+    updateCounterDisplay('miss-count', 'Error');
   });
 
-// Fetch total counter (increments automatically)
-fetch(`https://api.countapi.xyz/hit/${namespace}/${totalKey}`)
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById('total-miss-count').textContent = data.value;
-  })
-  .catch(err => {
-    console.error('Total counter error:', err);
-    document.getElementById('total-miss-count').textContent = 'Error';
-  });
+// Optional: Total counter (uncomment below if you want to show total forever)
+// fetch(`https://api.countapi.xyz/hit/${namespace}/${totalKey}`)
+//   .then(res => res.json())
+//   .then(data => {
+//     updateCounterDisplay('total-miss-count', data.value);
+//   })
+//   .catch(err => {
+//     console.error('Total counter error:', err);
+//     updateCounterDisplay('total-miss-count', 'Error');
+//   });
