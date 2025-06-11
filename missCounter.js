@@ -1,13 +1,29 @@
-const today = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
-const missCountKey = `missCount_${today}`; // Unique key for today's counter
+// Get today's date in YYYY-MM-DD format
+const today = new Date().toISOString().split('T')[0];
 
-// Retrieve the current count from localStorage or initialize it
-let missCount = localStorage.getItem(missCountKey);
-if (!missCount) {
-    missCount = 0;
-}
-missCount = parseInt(missCount) + 1; // Increment the count
-localStorage.setItem(missCountKey, missCount); // Save the updated count
+// Use a unique namespace to avoid collision with others on countapi.xyz
+const namespace = 'navya-special-nikhil-project';
+const dailyKey = `missCount_${today}`;
+const totalKey = 'totalMissCount';
 
-// Update the counter display
-document.getElementById('miss-count').textContent = missCount;
+// Fetch daily counter (increments automatically)
+fetch(`https://api.countapi.xyz/hit/${namespace}/${dailyKey}`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('miss-count').textContent = data.value;
+  })
+  .catch(err => {
+    console.error('Daily counter error:', err);
+    document.getElementById('miss-count').textContent = 'Error';
+  });
+
+// Fetch total counter (increments automatically)
+fetch(`https://api.countapi.xyz/hit/${namespace}/${totalKey}`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById('total-miss-count').textContent = data.value;
+  })
+  .catch(err => {
+    console.error('Total counter error:', err);
+    document.getElementById('total-miss-count').textContent = 'Error';
+  });
